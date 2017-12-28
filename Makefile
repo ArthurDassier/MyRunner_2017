@@ -6,6 +6,9 @@
 ##
 
 SRC	=	srcs/brain.c		\
+		srcs/init.c		\
+		srcs/events.c		\
+		srcs/map.c		\
 
 OBJ	=	$(SRC:.c = .o)
 

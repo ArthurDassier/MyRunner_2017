@@ -14,6 +14,7 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 #include "printf.h"
+#include "config.h"
 #include "runner.h"
 
 void my_putchar(char c);
