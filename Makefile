@@ -9,6 +9,7 @@ SRC	=	srcs/brain.c		\
 		srcs/init.c		\
 		srcs/events.c		\
 		srcs/map.c		\
+		srcs/displayer.c	\
 
 OBJ	=	$(SRC:.c = .o)
 

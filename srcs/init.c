@@ -7,34 +7,35 @@
 
 #include "my.h"
 
-void general_init(game_s *game, graphs *graph)
+void general_init(game_s *game)
 {
 	init_game(game);
-	init_graphs(graph);
-	sfSprite_setTexture(graph->back_grd, graph->backgrd, sfTrue);
+	init_graphs(game);
+	sfSprite_setTexture(game->back_rd->back_spt, game->back_rd->back_txt, sfTrue);
 }
 
-game_s *init_game(game_s *game)
+void init_game(game_s *game)
 {
-	game->time_s.microseconds = FRAMERATE;
-	game->video_mode.width = WIDTH_WID;
-	game->video_mode.height = HEIGHT_WID;
-	game->video_mode.bitsPerPixel = BPP;
-	game->window = sfRenderWindow_create(game->video_mode, "MyWindow",
+	game->wd.time_s.microseconds = FRAMERATE;
+	game->wd.video_mode.width = WIDTH_WID;
+	game->wd.video_mode.height = HEIGHT_WID;
+	game->wd.video_mode.bitsPerPixel = BPP;
+	game->wd.window = sfRenderWindow_create(game->wd.video_mode, "MyWindow",
 	sfDefaultStyle, NULL);
-	return (game);
 }
 
-graphs *init_graphs(graphs *graph)
+void init_graphs(game_s *game)
 {
-	graph->backgrd = sfTexture_createFromFile("./textures/index.png",
+	game->back_rd->back_txt = sfTexture_createFromFile("./textures/index.png",
 	NULL);
-	graph->grass = sfTexture_createFromFile("./textures/graas_mine.png",
+	game->graph->grass = sfTexture_createFromFile("./textures/graas_mine.png",
 	NULL);
-	graph->cobble = sfTexture_createFromFile("./textures/cobble.png",
+	game->graph->cobble = sfTexture_createFromFile("./textures/cobble.png",
 	NULL);
-	graph->back_grd = sfSprite_create();
-	graph->dirt = sfSprite_create();
-	graph->stone = sfSprite_create();
-	return (graph);
+	game->graph->wood = sfTexture_createFromFile("./textures/wood.png",
+	NULL);
+	game->back_rd->back_spt = sfSprite_create();
+	game->graph->dirt = sfSprite_create();
+	game->graph->stone = sfSprite_create();
+	game->graph->woody = sfSprite_create();
 }

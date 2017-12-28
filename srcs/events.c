@@ -10,10 +10,10 @@
 void analyse_event(game_s game)
 {
 	sfEvent	event;
-	while (sfRenderWindow_pollEvent(game.window, &event)) {
+	while (sfRenderWindow_pollEvent(game.wd.window, &event)) {
 		if (event.type == sfEvtClosed) {
 			my_printf("pfff, looser.\n");
-			sfRenderWindow_close(game.window);
+			sfRenderWindow_close(game.wd.window);
 		}
 	}
 }

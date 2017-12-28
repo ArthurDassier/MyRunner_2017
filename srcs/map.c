@@ -7,24 +7,29 @@
 
 #include "my.h"
 
-void read_map(game_s *game, graphs *graph, char str[8])
+void display_map(game_s game, char *str)
+{
+	sfRenderWindow_drawSprite(game.wd.window, game.back_rd->back_spt, NULL);
+	sfSprite_setTexture(game.graph->dirt, game.graph->grass, sfTrue);
+	sfSprite_setTexture(game.graph->stone, game.graph->cobble, sfTrue);
+	sfSprite_setTexture(game.graph->woody, game.graph->wood, sfTrue);
+	read_map(&game, str);
+}
+
+void read_map(game_s *game, char *buffer)
 {
 	int	i = 0;
-	graph->map_pos.x = 0;
-	graph->map_pos.y = 0;
 
-	while (i != 8) {
-		if (str[i] == '1') {
-			sfRenderWindow_drawSprite(game->window, graph->dirt, NULL);
-			sfSprite_setPosition(graph->dirt, graph->map_pos);
-			graph->map_pos.x = graph->map_pos.x + 100;
-		} else if (str[i] == '2') {
-			sfRenderWindow_drawSprite(game->window, graph->stone, NULL);
-			sfSprite_setPosition(graph->stone, graph->map_pos);
-			graph->map_pos.x = graph->map_pos.x + 100;
-
+	game->graph->map_pos.x = 0;
+	game->graph->map_pos.y = 600;
+	while (i != my_strlen(buffer)) {
+		if (buffer[i] == '1' || buffer[i] == '2' || buffer[i] == '3')
+			number_map(game, buffer, i);
+		else if (buffer[i] == '\n') {
+			game->graph->map_pos.x = 0;
+			game->graph->map_pos.y = game->graph->map_pos.y + 98;
 		} else
-			graph->map_pos.x = graph->map_pos.x + 100;
+			game->graph->map_pos.x = game->graph->map_pos.x + 98;
 		++i;
 	}
 }

@@ -12,31 +12,32 @@ void help()
 	my_printf("ALPHA (v:0.2 my_runner) IN DEVELOPEMENT\n");
 }
 
-void play(game_s game, graphs *graph, char str[8])
+void play(game_s game, char *argv)
 {
-	general_init(&game, graph);
-	while (sfRenderWindow_isOpen(game.window)) {
-		sfRenderWindow_drawSprite(game.window, graph->back_grd, NULL);
-		sfSprite_setTexture(graph->dirt, graph->grass, sfTrue);
-		sfSprite_setTexture(graph->stone, graph->cobble, sfTrue);
-		read_map(&game, graph, str);
-		sfRenderWindow_display(game.window);
+	int fd = open(argv, O_RDONLY);
+	char *buffer = malloc(sizeof(char) * 10000);
+
+	read(fd, buffer, sizeof(char) * 10000);
+	general_init(&game);
+	while (sfRenderWindow_isOpen(game.wd.window)) {
+		display_map(game, buffer);
+		sfRenderWindow_display(game.wd.window);
 		analyse_event(game);
-		sfSleep(game.time_s);
+		sfSleep(game.wd.time_s);
 	}
 }
 
 int main(int argc, char *argv[])
 {
 	game_s	game;
-	graphs	*graph = malloc(sizeof(graphs));
+	game.graph = malloc(sizeof(graphs));
 
-	char str[8] = "112211";
+	if (argc != 2)
+		return(84);
 	if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'h') {
 		help();
 		return(0);
-	}
-	else
-		play(game, graph, str);
+	} else
+		play(game, argv[1]);
 	return (0);
 }

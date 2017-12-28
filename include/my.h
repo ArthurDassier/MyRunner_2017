@@ -11,6 +11,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 #include "printf.h"

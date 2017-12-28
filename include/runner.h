@@ -11,28 +11,42 @@
 
 #include "my.h"
 
-typedef struct game_s
+typedef struct wind
 {
 	sfVideoMode	video_mode;
 	sfRenderWindow	*window;
 	sfTime		time_s;
-} game_s;
+} wind;
 
+typedef struct background
+{
+	sfTexture	*back_txt;
+	sfSprite	*back_spt;
+} background;
 typedef struct graphs
 {
-	sfTexture	*backgrd;
 	sfTexture	*grass;
 	sfTexture	*cobble;
-	sfSprite	*back_grd;
+	sfTexture	*wood;
 	sfSprite	*dirt;
 	sfSprite	*stone;
+	sfSprite	*woody;
 	sfVector2f	map_pos;
 } graphs;
 
-void analyse_event();
-void general_init(game_s *game, graphs *graph);
-game_s *init_game(game_s *game);
-graphs *init_graphs(graphs *graph);
-void read_map(game_s *game, graphs *graph, char str[8]);
+typedef struct game_s
+{
+	wind		wd;
+	background	*back_rd;
+	graphs		*graph;
+} game_s;
+
+void analyse_event(game_s game);
+void general_init(game_s *game);
+void init_game(game_s *game);
+void init_graphs(game_s *game);
+void read_map(game_s *game, char *str);
+void display_map(game_s game, char *str);
+void number_map(game_s *game, char *buffer, int i);
 
 #endif
