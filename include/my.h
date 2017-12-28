@@ -11,6 +11,10 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <SFML/Graphics.h>
+#include <SFML/Audio.h>
+#include "printf.h"
+#include "runner.h"
 
 void my_putchar(char c);
 int my_isneg(int nb);
