@@ -19,17 +19,19 @@ void display_map(game_s game, char *str)
 void read_map(game_s *game, char *buffer)
 {
 	int	i = 0;
+	static int j = 0;
 
-	game->gh->map_pos.x = 0;
+	game->gh->map_pos.x = 0 - j;
 	game->gh->map_pos.y = 600;
 	while (i != my_strlen(buffer)) {
 		if (buffer[i] == '1' || buffer[i] == '2' || buffer[i] == '3')
 			number_map(game, buffer, i);
 		else if (buffer[i] == '\n') {
-			game->gh->map_pos.x = 0;
+			game->gh->map_pos.x = 0 - j;
 			game->gh->map_pos.y = game->gh->map_pos.y + 98;
 		} else
 			game->gh->map_pos.x = game->gh->map_pos.x + 98;
 		++i;
 	}
+	j = j + 8;
 }
