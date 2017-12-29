@@ -11,7 +11,9 @@ void general_init(game_s *game)
 {
 	init_game(game);
 	init_graphs(game);
+	sfSprite_setTexture(game->gh->dead, game->gh->zombie, sfTrue);
 	sfSprite_setTexture(game->bg->back_spt, game->bg->back_txt, sfTrue);
+	init_tab(game);
 }
 
 void init_game(game_s *game)
@@ -20,6 +22,8 @@ void init_game(game_s *game)
 	game->wd.video_mode.width = WIDTH_WID;
 	game->wd.video_mode.height = HEIGHT_WID;
 	game->wd.video_mode.bitsPerPixel = BPP;
+	game->sd->zikmu = sfMusic_createFromFile("./sounds/28d.wav");
+	sfMusic_play(game->sd->zikmu);
 	game->wd.window = sfRenderWindow_create(game->wd.video_mode, "MyWindow",
 	sfDefaultStyle, NULL);
 }
@@ -34,8 +38,12 @@ void init_graphs(game_s *game)
 	NULL);
 	game->gh->wood = sfTexture_createFromFile("./textures/wood.png",
 	NULL);
+	game->gh->zombie = sfTexture_createFromFile("./textures/zombie.png",
+	NULL);
 	game->bg->back_spt = sfSprite_create();
 	game->gh->dirt = sfSprite_create();
+	game->gh->dead = sfSprite_create();
 	game->gh->stone = sfSprite_create();
 	game->gh->woody = sfSprite_create();
+	game->anm = 0;
 }

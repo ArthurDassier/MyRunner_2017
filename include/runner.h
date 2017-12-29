@@ -29,17 +29,28 @@ typedef struct graphs
 	sfTexture	*grass;
 	sfTexture	*cobble;
 	sfTexture	*wood;
+	sfTexture	*zombie;
+	sfSprite	*dead;
 	sfSprite	*dirt;
 	sfSprite	*stone;
 	sfSprite	*woody;
 	sfVector2f	map_pos;
+	sfVector2f	zomb_pos;
+	sfIntRect	animation[24];
 } graphs;
+
+typedef struct sounds
+{
+	sfMusic	*zikmu;
+} sounds;
 
 typedef struct game_s
 {
 	wind		wd;
 	background	*bg;
 	graphs		*gh;
+	sounds		*sd;
+	int		anm;
 } game_s;
 
 void analyse_event(game_s game);
@@ -49,5 +60,8 @@ void init_graphs(game_s *game);
 void read_map(game_s *game, char *str);
 void display_map(game_s game, char *str);
 void number_map(game_s *game, char *buffer, int i);
+void init_tab(game_s *game);
+sfIntRect position_pixels(int a, int b, int c, int d);
+void animation(game_s *game);
 
 #endif
