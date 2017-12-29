@@ -30,8 +30,8 @@ void play(game_s game, char *argv)
 int main(int argc, char *argv[])
 {
 	game_s	game;
-	game.graph = malloc(sizeof(graphs));
 
+	game.gh = malloc(sizeof(graphs));
 	if (argc != 2)
 		return(84);
 	if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'h') {

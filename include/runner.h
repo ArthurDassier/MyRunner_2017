@@ -23,6 +23,7 @@ typedef struct background
 	sfTexture	*back_txt;
 	sfSprite	*back_spt;
 } background;
+
 typedef struct graphs
 {
 	sfTexture	*grass;
@@ -37,8 +38,8 @@ typedef struct graphs
 typedef struct game_s
 {
 	wind		wd;
-	background	*back_rd;
-	graphs		*graph;
+	background	*bg;
+	graphs		*gh;
 } game_s;
 
 void analyse_event(game_s game);

@@ -11,7 +11,7 @@ void general_init(game_s *game)
 {
 	init_game(game);
 	init_graphs(game);
-	sfSprite_setTexture(game->back_rd->back_spt, game->back_rd->back_txt, sfTrue);
+	sfSprite_setTexture(game->bg->back_spt, game->bg->back_txt, sfTrue);
 }
 
 void init_game(game_s *game)
@@ -26,16 +26,16 @@ void init_game(game_s *game)
 
 void init_graphs(game_s *game)
 {
-	game->back_rd->back_txt = sfTexture_createFromFile("./textures/index.png",
+	game->bg->back_txt = sfTexture_createFromFile("./textures/index.png",
 	NULL);
-	game->graph->grass = sfTexture_createFromFile("./textures/graas_mine.png",
+	game->gh->grass = sfTexture_createFromFile("./textures/graas_mine.png",
 	NULL);
-	game->graph->cobble = sfTexture_createFromFile("./textures/cobble.png",
+	game->gh->cobble = sfTexture_createFromFile("./textures/cobble.png",
 	NULL);
-	game->graph->wood = sfTexture_createFromFile("./textures/wood.png",
+	game->gh->wood = sfTexture_createFromFile("./textures/wood.png",
 	NULL);
-	game->back_rd->back_spt = sfSprite_create();
-	game->graph->dirt = sfSprite_create();
-	game->graph->stone = sfSprite_create();
-	game->graph->woody = sfSprite_create();
+	game->bg->back_spt = sfSprite_create();
+	game->gh->dirt = sfSprite_create();
+	game->gh->stone = sfSprite_create();
+	game->gh->woody = sfSprite_create();
 }
