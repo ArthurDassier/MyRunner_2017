@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 250017
-** zombie->c
+** zombie.c
 ** File description:
 ** blabla
 */
@@ -9,12 +9,31 @@
 
 void animation(game_s *game)
 {
-	game->gh->zomb_pos.y = 350;
+	static int	jump_up = 0;
+	static int	jump_dwn = 0;
+
 	if (game->anm == 24)
 		game->anm = 0;
 	sfSprite_setTextureRect(game->gh->dead, game->gh->animation[game->anm]);
+	if (sfKeyboard_isKeyPressed(sfKeySpace) == sfTrue)
+		jump_up = 1;
+	if (jump_up == 1 && jump_dwn < 16) {
+		jump(game, jump_dwn);
+		jump_dwn = jump_dwn + 1;
+	} else {
+		jump_up = 0;
+		jump_dwn = 0;
+	}
 	sfSprite_setPosition(game->gh->dead, game->gh->zomb_pos);
 	game->anm = game->anm + 1;
+}
+
+void jump(game_s *game, int jump_dwn)
+{
+	if (jump_dwn < 8)
+		game->gh->zomb_pos.y = game->gh->zomb_pos.y - 25;
+	else
+		game->gh->zomb_pos.y = game->gh->zomb_pos.y + 25;
 }
 
 sfIntRect position_pixels(int a, int b, int c, int d)

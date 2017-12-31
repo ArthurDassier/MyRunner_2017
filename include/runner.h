@@ -63,5 +63,6 @@ void number_map(game_s *game, char *buffer, int i);
 void init_tab(game_s *game);
 sfIntRect position_pixels(int a, int b, int c, int d);
 void animation(game_s *game);
+void jump(game_s *game, int jump_dwn);
 
 #endif
