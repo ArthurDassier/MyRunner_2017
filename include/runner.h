@@ -11,6 +11,14 @@
 
 #include "my.h"
 
+enum nom {
+	ZOMBIE,
+	BACKGROUND,
+	BLOCK_STONE,
+	BLOCK_DIRT,
+	BLOCK_WOOD
+};
+
 typedef struct wind
 {
 	sfVideoMode	video_mode;
@@ -53,6 +61,14 @@ typedef struct game_s
 	int		anm;
 } game_s;
 
+typedef struct game_obj
+{
+	sfTexture	*texture;
+	sfSprite	*sprite;
+	sfVector2f	vecteur;
+	sfIntRect	rect;
+} game_obj;
+
 void analyse_event(game_s game);
 void general_init(game_s *game);
 void init_game(game_s *game);
@@ -64,5 +80,6 @@ void init_tab(game_s *game);
 sfIntRect position_pixels(int a, int b, int c, int d);
 void animation(game_s *game);
 void jump(game_s *game, int jump_dwn);
+void check_collision(game_s *game);
 
 #endif

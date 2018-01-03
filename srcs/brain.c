@@ -9,7 +9,7 @@
 
 void help()
 {
-	my_printf("ALPHA (v:0.2 my_runner) IN DEVELOPEMENT\n");
+	my_printf("ALPHA (v:0.6 my_runner) IN DEVELOPEMENT\n");
 }
 
 void play(game_s game, char *argv)
@@ -20,8 +20,8 @@ void play(game_s game, char *argv)
 	read(fd, buffer, sizeof(int) * 400000);
 	general_init(&game);
 	while (sfRenderWindow_isOpen(game.wd.window)) {
-		display_map(game, buffer);
 		animation(&game);
+		display_map(game, buffer);
 		sfRenderWindow_drawSprite(game.wd.window, game.gh->dead, NULL);
 		sfRenderWindow_display(game.wd.window);
 		analyse_event(game);

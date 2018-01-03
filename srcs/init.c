@@ -14,7 +14,7 @@ void general_init(game_s *game)
 	sfSprite_setTexture(game->gh->dead, game->gh->zombie, sfTrue);
 	sfSprite_setTexture(game->bg->back_spt, game->bg->back_txt, sfTrue);
 	init_tab(game);
-	game->gh->zomb_pos.y = 350;
+	game->gh->zomb_pos.y = 460;
 }
 
 void init_game(game_s *game)
