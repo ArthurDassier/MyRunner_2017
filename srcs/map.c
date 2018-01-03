@@ -18,11 +18,11 @@ void display_map(game_s game, char *str)
 
 void read_map(game_s *game, char *buffer)
 {
-	int	i = 0;
-	static int j = 0;
+	int		i = 0;
+	static int	j = 0;
 
 	game->gh->map_pos.x = 0 - j;
-	game->gh->map_pos.y = 1100;
+	game->gh->map_pos.y = jump();
 	while (i != my_strlen(buffer)) {
 		if (buffer[i] == '1' || buffer[i] == '2' || buffer[i] == '3') {
 			number_map(game, buffer, i);
@@ -34,15 +34,4 @@ void read_map(game_s *game, char *buffer)
 		++i;
 	}
 	j = j + 8;
-}
-
-void check_collision(game_s *game)
-{
-	//printf("%f\n", game->gh->map_pos.y);
-	//printf("%d\n", game->gh->map_pos.y + 98 > game->gh->zomb_pos.y + 446 &&
-	//game->gh->map_pos.y < game->gh->zomb_pos.y + 446);
-	//if (game->gh->map_pos.y + 98 > game->gh->zomb_pos.y + 446 &&
-	//game->gh->map_pos.y < game->gh->zomb_pos.y + 446) {
-		//	sfRenderWindow_close(game->wd.window);
-	//}
 }
