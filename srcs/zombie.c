@@ -44,7 +44,7 @@ sfIntRect position_pixels(int a, int b, int c, int d)
 	taille.left = b;
 	taille.top = c;
 	taille.width = d;
-	return(taille);
+	return (taille);
 }
 
 void init_tab(game_s *game)

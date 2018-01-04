@@ -36,10 +36,10 @@ int main(int argc, char *argv[])
 	game.gh = malloc(sizeof(graphs));
 	game.bg = malloc(sizeof(background));
 	if (argc != 2)
-		return(84);
+		return (84);
 	if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'h') {
 		help();
-		return(0);
+		return (0);
 	} else
 		play(game, argv[1]);
 	return (0);
