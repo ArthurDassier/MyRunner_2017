@@ -29,7 +29,16 @@ typedef struct wind
 typedef struct background
 {
 	sfTexture	*back_txt;
+	sfTexture	*back_mt3;
+	sfTexture	*back_mt2;
+	sfTexture	*back_mt1;
 	sfSprite	*back_spt;
+	sfSprite	*back_spm3;
+	sfSprite	*back_spm2;
+	sfSprite	*back_spm1;
+	sfVector2f	m3_pos;
+	sfVector2f	m2_pos;
+	sfVector2f	m1_pos;
 } background;
 
 typedef struct graphs
@@ -77,8 +86,11 @@ void read_map(game_s *game, char *str);
 void display_map(game_s game, char *str);
 void number_map(game_s *game, char *buffer, int i);
 void init_tab(game_s *game);
+void txt_create(game_s *game);
+void spt_create(game_s *game);
 sfIntRect position_pixels(int a, int b, int c, int d);
 void animation(game_s *game);
+void draw_background(game_s *gm);
 int jump();
 
 #endif
