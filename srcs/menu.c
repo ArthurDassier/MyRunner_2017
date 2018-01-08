@@ -20,17 +20,34 @@ void display_code(game_s *game, char *buffer)
 	}
 }
 
+int key_enter()
+{
+	static int	status = 0;
+
+	if (sfKeyboard_isKeyPressed(sfKeyDown) == sfTrue)
+		status = 1;
+	if (sfKeyboard_isKeyPressed(sfKeyUp) == sfTrue)
+		status = 0;
+	return (status);
+}
+
+int return_enter(game_s *game, int status)
+{
+	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && status == 0)
+		return (1);
+	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && status == 1)
+		sfRenderWindow_close(game->wd.window);
+	return (0);
+}
+
 int display_start(game_s *game)
 {
-	static int	u = 0;
+	static int	status = 0;
 
 	sfRenderWindow_drawSprite(game->wd.window, game->mn->starter, NULL);
 	sfRenderWindow_drawSprite(game->wd.window, game->mn->cutter, NULL);
-	if (sfKeyboard_isKeyPressed(sfKeyDown) == sfTrue)
-		u = 1;
-	if (sfKeyboard_isKeyPressed(sfKeyUp) == sfTrue)
-		u = 0;
-	if (u == 0) {
+	status = key_enter();
+	if (status == 0) {
 		game->mn->swd_pos.x = 390;
 		game->mn->swd_pos.y = 490;
 	} else {
@@ -38,9 +55,5 @@ int display_start(game_s *game)
 		game->mn->swd_pos.y = 650;
 	}
 	sfSprite_setPosition(game->mn->cutter, game->mn->swd_pos);
-	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && u == 0)
-		return (1);
-	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && u == 1)
-		sfRenderWindow_close(game->wd.window);
-	return (0);
+	return (return_enter(game, status));
 }

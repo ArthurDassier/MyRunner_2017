@@ -9,7 +9,7 @@
 
 void help()
 {
-	my_printf("ALPHA (v:2.3 my_runner) IN DEVELOPEMENT\n");
+	my_printf("ALPHA (v:3.3 my_runner) IN DEVELOPEMENT\n");
 }
 
 void play(game_s game, char *argv)

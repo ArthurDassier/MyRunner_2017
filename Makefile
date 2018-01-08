@@ -11,7 +11,8 @@ SRC	=	srcs/brain.c		\
 		srcs/map.c		\
 		srcs/displayer.c	\
 		srcs/zombie.c		\
-		srcs/menu.c
+		srcs/menu.c		\
+		srcs/init_textures.c	\
 
 OBJ	=	$(SRC:.c = .o)
 
