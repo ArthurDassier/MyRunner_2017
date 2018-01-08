@@ -11,13 +11,14 @@
 
 #include "my.h"
 
-enum nom {
-	ZOMBIE,
-	BACKGROUND,
-	BLOCK_STONE,
-	BLOCK_DIRT,
-	BLOCK_WOOD
-};
+typedef struct menus
+{
+	sfTexture	*menu_start;
+	sfTexture	*sword;
+	sfSprite	*starter;
+	sfSprite	*cutter;
+	sfVector2f	swd_pos;
+} menus;
 
 typedef struct wind
 {
@@ -67,6 +68,7 @@ typedef struct game_s
 	background	*bg;
 	graphs		*gh;
 	sounds		*sd;
+	menus		*mn;
 	int		anm;
 } game_s;
 
@@ -83,7 +85,7 @@ void general_init(game_s *game);
 void init_game(game_s *game);
 void init_graphs(game_s *game);
 void read_map(game_s *game, char *str);
-void display_map(game_s game, char *str);
+void display_map(game_s *game, char *str);
 void number_map(game_s *game, char *buffer, int i);
 void init_tab(game_s *game);
 void txt_create(game_s *game);
@@ -92,5 +94,7 @@ sfIntRect position_pixels(int a, int b, int c, int d);
 void animation(game_s *game);
 void draw_background(game_s *gm);
 int jump();
+int display_start(game_s *game);
+void display_code(game_s *game, char *buffer);
 
 #endif

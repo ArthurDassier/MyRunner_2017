@@ -11,9 +11,12 @@ void general_init(game_s *game)
 {
 	init_game(game);
 	init_graphs(game);
+	sfSprite_setTexture(game->mn->starter, game->mn->menu_start, sfTrue);
+	sfSprite_setTexture(game->mn->cutter, game->mn->sword, sfTrue);
 	sfSprite_setTexture(game->gh->dead, game->gh->zombie, sfTrue);
 	sfSprite_setTexture(game->bg->back_spt, game->bg->back_txt, sfTrue);
 	init_tab(game);
+	sfRenderWindow_setMouseCursorVisible(game->wd.window, sfFalse);
 	game->gh->zomb_pos.y = 460;
 }
 
@@ -47,6 +50,10 @@ void txt_create(game_s *game)
 	NULL);
 	game->gh->zombie = sfTexture_createFromFile("./textures/zombie.png",
 	NULL);
+	game->mn->menu_start = sfTexture_createFromFile("./textures/menu.png",
+	NULL);
+	game->mn->sword = sfTexture_createFromFile("./textures/diams.png",
+	NULL);
 }
 
 void spt_create(game_s *game)
@@ -55,6 +62,8 @@ void spt_create(game_s *game)
 	game->bg->back_spm3 = sfSprite_create();
 	game->bg->back_spm2 = sfSprite_create();
 	game->bg->back_spm1 = sfSprite_create();
+	game->mn->starter = sfSprite_create();
+	game->mn->cutter = sfSprite_create();
 	game->gh->dirt = sfSprite_create();
 	game->gh->dead = sfSprite_create();
 	game->gh->stone = sfSprite_create();

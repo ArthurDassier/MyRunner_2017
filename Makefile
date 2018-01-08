@@ -11,6 +11,7 @@ SRC	=	srcs/brain.c		\
 		srcs/map.c		\
 		srcs/displayer.c	\
 		srcs/zombie.c		\
+		srcs/menu.c
 
 OBJ	=	$(SRC:.c = .o)
 

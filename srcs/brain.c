@@ -9,7 +9,7 @@
 
 void help()
 {
-	my_printf("ALPHA (v:1.6 my_runner) IN DEVELOPEMENT\n");
+	my_printf("ALPHA (v:2.3 my_runner) IN DEVELOPEMENT\n");
 }
 
 void play(game_s game, char *argv)
@@ -20,9 +20,7 @@ void play(game_s game, char *argv)
 	read(fd, buffer, sizeof(int) * 400000);
 	general_init(&game);
 	while (sfRenderWindow_isOpen(game.wd.window)) {
-		animation(&game);
-		display_map(game, buffer);
-		sfRenderWindow_drawSprite(game.wd.window, game.gh->dead, NULL);
+		display_code(&game, buffer);
 		sfRenderWindow_display(game.wd.window);
 		analyse_event(game);
 		sfSleep(game.wd.time_s);
@@ -35,6 +33,8 @@ int main(int argc, char *argv[])
 
 	game.gh = malloc(sizeof(graphs));
 	game.bg = malloc(sizeof(background));
+	game.sd = malloc(sizeof(sounds));
+	game.mn = malloc(sizeof(menus));
 	if (argc != 2)
 		return (84);
 	if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'h') {

@@ -7,17 +7,17 @@
 
 #include "my.h"
 
-void display_map(game_s game, char *str)
+void display_map(game_s *game, char *str)
 {
-	sfRenderWindow_drawSprite(game.wd.window, game.bg->back_spt, NULL);
-	sfSprite_setTexture(game.gh->dirt, game.gh->grass, sfTrue);
-	sfSprite_setTexture(game.gh->stone, game.gh->cobble, sfTrue);
-	sfSprite_setTexture(game.gh->woody, game.gh->wood, sfTrue);
-	sfSprite_setTexture(game.bg->back_spm3, game.bg->back_mt3, sfTrue);
-	sfSprite_setTexture(game.bg->back_spm2, game.bg->back_mt2, sfTrue);
-	sfSprite_setTexture(game.bg->back_spm1, game.bg->back_mt1, sfTrue);
-	draw_background(&game);
-	read_map(&game, str);
+	sfRenderWindow_drawSprite(game->wd.window, game->bg->back_spt, NULL);
+	sfSprite_setTexture(game->gh->dirt, game->gh->grass, sfTrue);
+	sfSprite_setTexture(game->gh->stone, game->gh->cobble, sfTrue);
+	sfSprite_setTexture(game->gh->woody, game->gh->wood, sfTrue);
+	sfSprite_setTexture(game->bg->back_spm3, game->bg->back_mt3, sfTrue);
+	sfSprite_setTexture(game->bg->back_spm2, game->bg->back_mt2, sfTrue);
+	sfSprite_setTexture(game->bg->back_spm1, game->bg->back_mt1, sfTrue);
+	draw_background(game);
+	read_map(game, str);
 }
 
 void draw_background(game_s *gm)
