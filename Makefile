@@ -7,11 +7,11 @@
 
 SRC	=	srcs/brain.c		\
 		srcs/init.c		\
-		srcs/events.c		\
 		srcs/map.c		\
-		srcs/displayer.c	\
-		srcs/zombie.c		\
 		srcs/menu.c		\
+		srcs/events.c		\
+		srcs/zombie.c		\
+		srcs/displayer.c	\
 		srcs/init_textures.c	\
 
 OBJ	=	$(SRC:.c = .o)
@@ -29,7 +29,7 @@ C_FLAGS	=	-Wall -Wextra
 ifeq ($(shell cat /etc/*-release | grep "Fedora"), )
 LIB_FLAG	=	-l csfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-system -lmy
 else
-LIB_FLAG	=	-l c_graph_prog
+LIB_FLAG	=	-l c_graph_prog -lmy
 endif
 
 INCL_FLAG	=	-I$(MY.H_DIR)
