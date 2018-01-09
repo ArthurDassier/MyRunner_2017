@@ -26,7 +26,11 @@ CC	=	gcc
 
 C_FLAGS	=	-Wall -Wextra
 
+ifeq ($shell cat/etc/*-release | grep "Fedora"), )
 LIB_FLAG	=	-l c_graph_prog
+else
+LIB_FLAG	=	-l csfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-system -lmy
+endif
 
 INCL_FLAG	=	-I$(MY.H_DIR)
 
