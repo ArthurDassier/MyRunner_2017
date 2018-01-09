@@ -39,7 +39,8 @@ int jump()
 
 sfIntRect position_pixels(int a, int b, int c, int d)
 {
-	sfIntRect taille;
+	sfIntRect	taille;
+
 	taille.height = a;
 	taille.left = b;
 	taille.top = c;

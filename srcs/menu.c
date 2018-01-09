@@ -7,16 +7,16 @@
 
 #include "my.h"
 
-void display_code(game_s *game, char *buffer)
+void display_code(game_s *gm, char *buffer)
 {
-	static int u = 0;
+	static int status = 0;
 
-	if (u == 0)
-		u = display_start(game);
+	if (status == 0)
+		status = display_start(gm);
 	else {
-		animation(game);
-		display_map(game, buffer);
-		sfRenderWindow_drawSprite(game->wd.window, game->gh->dead, NULL);
+		animation(gm);
+		display_map(gm, buffer);
+		sfRenderWindow_drawSprite(gm->wd.window, gm->gh->dead, NULL);
 	}
 }
 
