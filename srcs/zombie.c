@@ -16,14 +16,17 @@ void animation(game_s *game)
 	game->anm = game->anm + 1;
 }
 
-int jump(void)
+int jump(game_s *game)
 {
 	static int	jump_up = 0;
 	static int	jump_dwn = 0;
 	static int	taille = 1100;
 
-	if (sfKeyboard_isKeyPressed(sfKeySpace) == sfTrue)
+	if (sfKeyboard_isKeyPressed(sfKeySpace) == sfTrue) {
 		jump_up = 1;
+		if (sfSound_getStatus(game->sd->zmb) != sfPlaying)
+			sfSound_play(game->sd->zmb);
+	}
 	if (jump_up == 1 && jump_dwn < 8) {
 		taille = taille + 25;
 		jump_dwn = jump_dwn + 1;

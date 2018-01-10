@@ -20,21 +20,31 @@ void display_code(game_s *gm, char *buffer)
 	}
 }
 
-int key_enter(void)
+int key_enter(game_s *game)
 {
+
 	static int	status = 0;
 
-	if (sfKeyboard_isKeyPressed(sfKeyDown) == sfTrue)
+	if (sfKeyboard_isKeyPressed(sfKeyDown) == sfTrue) {
 		status = 1;
-	if (sfKeyboard_isKeyPressed(sfKeyUp) == sfTrue)
+		if (sfSound_getStatus(game->sd->epe) != sfPlaying)
+			sfSound_play(game->sd->epe);
+	}
+	if (sfKeyboard_isKeyPressed(sfKeyUp) == sfTrue) {
 		status = 0;
+		if (sfSound_getStatus(game->sd->epe) != sfPlaying)
+			sfSound_play(game->sd->epe);
+	}
 	return (status);
 }
 
 int return_enter(game_s *game, int status)
 {
-	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && status == 0)
+	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && status == 0) {
+		sfMusic_play(game->sd->zikmu);
+		sfMusic_setVolume(game->sd->zikmu, 25);
 		return (1);
+	}
 	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && status == 1)
 		sfRenderWindow_close(game->wd.window);
 	return (0);
@@ -46,7 +56,7 @@ int display_start(game_s *game)
 
 	sfRenderWindow_drawSprite(game->wd.window, game->mn->starter, NULL);
 	sfRenderWindow_drawSprite(game->wd.window, game->mn->cutter, NULL);
-	status = key_enter(void);
+	status = key_enter(game);
 	if (status == 0) {
 		game->mn->swd_pos.x = 390;
 		game->mn->swd_pos.y = 490;

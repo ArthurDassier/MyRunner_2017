@@ -59,7 +59,11 @@ typedef struct graphs
 
 typedef struct sounds
 {
-	sfMusic	*zikmu;
+	sfMusic		*zikmu;
+	sfSoundBuffer	*zombos;
+	sfSoundBuffer	*epee;
+	sfSound		*zmb;
+	sfSound		*epe;
 } sounds;
 
 typedef struct game_s
@@ -72,32 +76,26 @@ typedef struct game_s
 	int		anm;
 } game_s;
 
-typedef struct game_obj
-{
-	sfTexture	*texture;
-	sfSprite	*sprite;
-	sfVector2f	vecteur;
-	sfIntRect	rect;
-} game_obj;
-
-void analyse_event(game_s game);
-void general_init(game_s *game);
-void init_game(game_s *game);
-void init_graphs(game_s *game);
-void read_map(game_s *game, char *str);
-void display_map(game_s *game, char *str);
-void number_map(game_s *game, char *buffer, int i);
-void init_tab(game_s *game);
-void txt_create(game_s *game);
-void txt_menus_creates(game_s *game);
-void spt_create(game_s *game);
 sfIntRect position_pixels(int a, int b, int c, int d);
-void animation(game_s *game);
-void draw_background(game_s *gm);
-int jump(void);
-int display_start(game_s *game);
+void number_map(game_s *game, char *buffer, int i);
 void display_code(game_s *game, char *buffer);
+void display_map(game_s *game, char *str);
+void read_map(game_s *game, char *str);
 int return_enter(game_s *game, int status);
-int key_enter(void);
+void txt_menus_creates(game_s *game);
+void draw_background(game_s *gm);
+void general_init(game_s *game);
+void analyse_event(game_s game);
+void init_graphs(game_s *game);
+void animation(game_s *game);
+void spt_create(game_s *game);
+void txt_create(game_s *game);
+int display_start(game_s *game);
+void init_game(game_s *game);
+void init_tab(game_s *game);
+void init_sounds(game_s *game);
+int key_enter(game_s *game);
+int jump(game_s *game);
+void help(void);
 
 #endif

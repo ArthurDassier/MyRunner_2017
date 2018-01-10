@@ -26,10 +26,19 @@ void init_game(game_s *game)
 	game->wd.video_mode.width = WIDTH_WID;
 	game->wd.video_mode.height = HEIGHT_WID;
 	game->wd.video_mode.bitsPerPixel = BPP;
-	game->sd->zikmu = sfMusic_createFromFile("./sounds/28d.wav");
-	sfMusic_play(game->sd->zikmu);
 	game->wd.window = sfRenderWindow_create(game->wd.video_mode, "MyWindow",
 	sfDefaultStyle, NULL);
+}
+
+void init_sounds(game_s *game)
+{
+	game->sd->zikmu = sfMusic_createFromFile("./sounds/gThem.wav");
+	game->sd->epee = sfSoundBuffer_createFromFile("./sounds/hit.wav");
+	game->sd->zombos = sfSoundBuffer_createFromFile("./sounds/zombs.wav");
+	game->sd->zmb = sfSound_create();
+	game->sd->epe = sfSound_create();
+	sfSound_setBuffer(game->sd->zmb, game->sd->zombos);
+	sfSound_setBuffer(game->sd->epe, game->sd->epee);
 }
 
 void init_graphs(game_s *game)
@@ -37,5 +46,6 @@ void init_graphs(game_s *game)
 	txt_create(game);
 	txt_menus_creates(game);
 	spt_create(game);
+	init_sounds(game);
 	game->anm = 0;
 }

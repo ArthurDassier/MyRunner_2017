@@ -7,7 +7,7 @@
 
 #include "my.h"
 
-void help()
+void help(void)
 {
 	my_printf("ALPHA (v:3.3 my_runner) IN DEVELOPEMENT\n");
 }
