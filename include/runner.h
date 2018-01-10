@@ -98,6 +98,6 @@ int jump(void);
 int display_start(game_s *game);
 void display_code(game_s *game, char *buffer);
 int return_enter(game_s *game, int status);
-int key_enter();
+int key_enter(void);
 
 #endif

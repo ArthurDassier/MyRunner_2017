@@ -20,7 +20,7 @@ void display_code(game_s *gm, char *buffer)
 	}
 }
 
-int key_enter()
+int key_enter(void)
 {
 	static int	status = 0;
 
@@ -46,7 +46,7 @@ int display_start(game_s *game)
 
 	sfRenderWindow_drawSprite(game->wd.window, game->mn->starter, NULL);
 	sfRenderWindow_drawSprite(game->wd.window, game->mn->cutter, NULL);
-	status = key_enter();
+	status = key_enter(void);
 	if (status == 0) {
 		game->mn->swd_pos.x = 390;
 		game->mn->swd_pos.y = 490;
