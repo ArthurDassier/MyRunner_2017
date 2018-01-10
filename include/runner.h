@@ -94,7 +94,7 @@ void spt_create(game_s *game);
 sfIntRect position_pixels(int a, int b, int c, int d);
 void animation(game_s *game);
 void draw_background(game_s *gm);
-int jump();
+int jump(void);
 int display_start(game_s *game);
 void display_code(game_s *game, char *buffer);
 int return_enter(game_s *game, int status);

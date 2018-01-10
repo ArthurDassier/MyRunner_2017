@@ -41,7 +41,7 @@ void read_map(game_s *game, char *buffer)
 	static int	j = 0;
 
 	game->gh->map_pos.x = 0 - j;
-	game->gh->map_pos.y = jump();
+	game->gh->map_pos.y = jump(void);
 	while (i != my_strlen(buffer)) {
 		if (buffer[i] == '1' || buffer[i] == '2' || buffer[i] == '3') {
 			number_map(game, buffer, i);

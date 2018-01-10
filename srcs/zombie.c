@@ -16,7 +16,7 @@ void animation(game_s *game)
 	game->anm = game->anm + 1;
 }
 
-int jump()
+int jump(void)
 {
 	static int	jump_up = 0;
 	static int	jump_dwn = 0;
