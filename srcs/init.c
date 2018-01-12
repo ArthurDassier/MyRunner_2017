@@ -13,11 +13,14 @@ void general_init(game_s *game)
 	init_graphs(game);
 	sfSprite_setTexture(game->mn->starter, game->mn->menu_start, sfTrue);
 	sfSprite_setTexture(game->mn->cutter, game->mn->sword, sfTrue);
+	sfSprite_setTexture(game->mn->def, game->mn->defeat, sfTrue);
 	sfSprite_setTexture(game->gh->dead, game->gh->zombie, sfTrue);
 	sfSprite_setTexture(game->bg->back_spt, game->bg->back_txt, sfTrue);
 	init_tab(game);
-	//sfRenderWindow_setMouseCursorVisible(game->wd.window, sfFalse);
+	sfRenderWindow_setMouseCursorVisible(game->wd.window, sfFalse);
 	game->gh->zomb_pos.y = 460;
+	game->status = 0;
+	game->check = 0;
 }
 
 void init_game(game_s *game)

@@ -15,8 +15,10 @@ typedef struct menus
 {
 	sfTexture	*menu_start;
 	sfTexture	*sword;
+	sfTexture	*defeat;
 	sfSprite	*starter;
 	sfSprite	*cutter;
+	sfSprite	*def;
 	sfVector2f	swd_pos;
 } menus;
 
@@ -54,6 +56,7 @@ typedef struct graphs
 	sfSprite	*woody;
 	sfVector2f	map_pos;
 	sfVector2f	zomb_pos;
+	sfVector2f	pos_map[1000];
 	sfIntRect	animation[24];
 } graphs;
 
@@ -74,14 +77,17 @@ typedef struct game_s
 	sounds		*sd;
 	menus		*mn;
 	int		anm;
+	int		status;
+	int		map;
+	int		check;
 } game_s;
 
 sfIntRect position_pixels(int a, int b, int c, int d);
-void number_map(game_s *game, char *buffer, int i);
+void number_map(game_s *game, char *buffer, int i, int count);
 void display_code(game_s *game, char *buffer);
 void display_map(game_s *game, char *str);
 void read_map(game_s *game, char *str);
-int return_enter(game_s *game, int status);
+void return_enter(game_s *game, int status);
 void txt_menus_creates(game_s *game);
 void draw_background(game_s *gm);
 void general_init(game_s *game);
@@ -90,10 +96,11 @@ void init_graphs(game_s *game);
 void animation(game_s *game);
 void spt_create(game_s *game);
 void txt_create(game_s *game);
-int display_start(game_s *game);
+void display_start(game_s *game);
 void init_game(game_s *game);
 void init_tab(game_s *game);
 void init_sounds(game_s *game);
+void defeat_menu(game_s *game);
 int key_enter(game_s *game);
 int jump(game_s *game);
 void help(void);

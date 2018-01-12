@@ -33,6 +33,8 @@ void txt_menus_creates(game_s *game)
 	NULL);
 	game->mn->sword = sfTexture_createFromFile("./textures/diams.png",
 	NULL);
+	game->mn->defeat = sfTexture_createFromFile("./textures/def.png",
+	NULL);
 }
 
 void spt_create(game_s *game)
@@ -43,6 +45,7 @@ void spt_create(game_s *game)
 	game->bg->back_spm1 = sfSprite_create();
 	game->mn->starter = sfSprite_create();
 	game->mn->cutter = sfSprite_create();
+	game->mn->def = sfSprite_create();
 	game->gh->dirt = sfSprite_create();
 	game->gh->dead = sfSprite_create();
 	game->gh->stone = sfSprite_create();

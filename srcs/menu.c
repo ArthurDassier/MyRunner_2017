@@ -9,20 +9,19 @@
 
 void display_code(game_s *gm, char *buffer)
 {
-	static int status = 0;
-
-	if (status == 0)
-		status = display_start(gm);
-	else {
+	if (gm->status == 0)
+		display_start(gm);
+	if (gm->status == 1) {
 		animation(gm);
 		display_map(gm, buffer);
 		sfRenderWindow_drawSprite(gm->wd.window, gm->gh->dead, NULL);
 	}
+	if (gm->status == 2)
+		defeat_menu(gm);
 }
 
 int key_enter(game_s *game)
 {
-
 	static int	status = 0;
 
 	if (sfKeyboard_isKeyPressed(sfKeyDown) == sfTrue) {
@@ -38,19 +37,19 @@ int key_enter(game_s *game)
 	return (status);
 }
 
-int return_enter(game_s *game, int status)
+void return_enter(game_s *game, int status)
 {
-	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && status == 0) {
+	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && status == 0 && game->check == 0) {
 		sfMusic_play(game->sd->zikmu);
 		sfMusic_setVolume(game->sd->zikmu, 25);
-		return (1);
+		game->status = 1;
 	}
 	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && status == 1)
 		sfRenderWindow_close(game->wd.window);
-	return (0);
+	game->check = 0;
 }
 
-int display_start(game_s *game)
+void display_start(game_s *game)
 {
 	static int	status = 0;
 
@@ -65,5 +64,14 @@ int display_start(game_s *game)
 		game->mn->swd_pos.y = 650;
 	}
 	sfSprite_setPosition(game->mn->cutter, game->mn->swd_pos);
-	return (return_enter(game, status));
+	return_enter(game, status);
+}
+
+void defeat_menu(game_s *game)
+{
+	sfRenderWindow_drawSprite(game->wd.window, game->mn->def, NULL);
+	if(sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue) {
+		game->status = 0;
+		game->check = 1;
+	}
 }

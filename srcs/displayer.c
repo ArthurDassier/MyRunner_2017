@@ -7,8 +7,10 @@
 
 #include "my.h"
 
-void number_map(game_s *gm, char *buffer, int i)
+void number_map(game_s *gm, char *buffer, int i, int count)
 {
+	gm->gh->pos_map[count].x = gm->gh->map_pos.x;
+	gm->gh->pos_map[count].y = gm->gh->map_pos.y;
 	if (buffer[i] == '1') {
 		sfRenderWindow_drawSprite(gm->wd.window, gm->gh->dirt, NULL);
 		sfSprite_setPosition(gm->gh->dirt, gm->gh->map_pos);
