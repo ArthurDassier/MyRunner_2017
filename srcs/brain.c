@@ -9,13 +9,13 @@
 
 void help(void)
 {
-	my_printf("BETA (v:3.3 my_runner) IN DEVELOPEMENT\n");
+	my_printf("BETA (v:6.3 my_runner) IN DEVELOPEMENT\n");
 }
 
 void play(game_s game, char *argv)
 {
-	int fd = open(argv, O_RDONLY);
-	char *buffer = malloc(sizeof(int) * 400000);
+	int	fd = open(argv, O_RDONLY);
+	char	*buffer = malloc(sizeof(int) * 400000);
 
 	read(fd, buffer, sizeof(int) * 400000);
 	general_init(&game);
@@ -25,6 +25,7 @@ void play(game_s game, char *argv)
 		analyse_event(game);
 		sfSleep(game.wd.time_s);
 	}
+	destroyer(&game);
 }
 
 int main(int argc, char *argv[])

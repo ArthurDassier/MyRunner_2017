@@ -18,6 +18,8 @@ void display_code(game_s *gm, char *buffer)
 	}
 	if (gm->status == 2)
 		defeat_menu(gm);
+	if (gm->status == 3)
+		win_menu(gm);
 }
 
 int key_enter(game_s *game)
@@ -65,13 +67,4 @@ void display_start(game_s *game)
 	}
 	sfSprite_setPosition(game->mn->cutter, game->mn->swd_pos);
 	return_enter(game, status);
-}
-
-void defeat_menu(game_s *game)
-{
-	sfRenderWindow_drawSprite(game->wd.window, game->mn->def, NULL);
-	if(sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue) {
-		game->status = 0;
-		game->check = 1;
-	}
 }

@@ -13,6 +13,8 @@ SRC	=	srcs/brain.c		\
 		srcs/zombie.c		\
 		srcs/displayer.c	\
 		srcs/init_textures.c	\
+		srcs/destroy.c		\
+		srcs/win_def.c		\
 
 OBJ	=	$(SRC:.c = .o)
 

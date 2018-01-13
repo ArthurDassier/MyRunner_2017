@@ -16,9 +16,11 @@ typedef struct menus
 	sfTexture	*menu_start;
 	sfTexture	*sword;
 	sfTexture	*defeat;
+	sfTexture	*win;
 	sfSprite	*starter;
 	sfSprite	*cutter;
 	sfSprite	*def;
+	sfSprite	*vic;
 	sfVector2f	swd_pos;
 } menus;
 
@@ -76,6 +78,7 @@ typedef struct game_s
 	graphs		*gh;
 	sounds		*sd;
 	menus		*mn;
+	int		score;
 	int		anm;
 	int		status;
 	int		map;
@@ -101,8 +104,13 @@ void init_game(game_s *game);
 void init_tab(game_s *game);
 void init_sounds(game_s *game);
 void defeat_menu(game_s *game);
+void win_menu(game_s *game);
 int key_enter(game_s *game);
 int jump(game_s *game);
+void destroyer(game_s *game);
+void destroy_text(game_s *game);
+void destroy_sprt(game_s *game);
+void destroy_snds(game_s *game);
 void help(void);
 
 #endif

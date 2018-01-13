@@ -37,8 +37,8 @@ void draw_background(game_s *gm)
 }
 void read_map(game_s *game, char *buffer)
 {
-	int		i = 0;
-	int		count = 0;
+	int	i = 0;
+	int	count = 0;
 
 	game->gh->map_pos.x = 0 - game->map;
 	game->gh->map_pos.y = jump(game);
@@ -54,4 +54,7 @@ void read_map(game_s *game, char *buffer)
 		++i;
 	}
 	game->map = game->map + 8;
+	game->score = game->score + 10;
+	if (game->score >= 6000)
+		game->status = 3;
 }
