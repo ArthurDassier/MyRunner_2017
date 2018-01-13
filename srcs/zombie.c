@@ -7,37 +7,37 @@
 
 #include "my.h"
 
-void animation(game_s *game)
+void animation(game_s *gm)
 {
-	if (game->anm == 24)
-		game->anm = 0;
-	sfSprite_setTextureRect(game->gh->dead, game->gh->animation[game->anm]);
-	sfSprite_setPosition(game->gh->dead, game->gh->zomb_pos);
-	game->anm = game->anm + 1;
+	if (gm->st.anm == 24)
+		gm->st.anm = 0;
+	sfSprite_setTextureRect(gm->gh->dead, gm->gh->animation[gm->st.anm]);
+	sfSprite_setPosition(gm->gh->dead, gm->gh->zomb_pos);
+	gm->st.anm = gm->st.anm + 1;
 }
 
-int collision(game_s *game, int jump_up)
+int collision(game_s *gm)
 {
 	int	i = 0;
 
-	while (game->gh->pos_map[i].x) {
-		if (game->gh->pos_map[i].x < game->gh->zomb_pos.x + 300 &&
-			game->gh->pos_map[i].x + 98 > game->gh->zomb_pos.x &&
-			game->gh->pos_map[i].y < game->gh->zomb_pos.y + 440 &&
-			98 + game->gh->pos_map[i].y > game->gh->zomb_pos.y &&
-			jump_up == 1) {
-				game->gh->zomb_pos.y = game->gh->zomb_pos.y - 98;
+	while (gm->gh->pos_map[i].x) {
+		if (gm->gh->pos_map[i].x < gm->gh->zomb_pos.x + 300 &&
+			gm->gh->pos_map[i].x + 98 > gm->gh->zomb_pos.x &&
+			gm->gh->pos_map[i].y < gm->gh->zomb_pos.y + 440 &&
+			98 + gm->gh->pos_map[i].y > gm->gh->zomb_pos.y &&
+			gm->st.jump_up == 1) {
+				gm->gh->zomb_pos.y = gm->gh->zomb_pos.y - 98;
 				return (1);
 			}
-		if (game->gh->pos_map[i].x < game->gh->zomb_pos.x + 300 &&
-			game->gh->pos_map[i].x + 98 > game->gh->zomb_pos.x &&
-			game->gh->pos_map[i].y < game->gh->zomb_pos.y + 440 &&
-			98 + game->gh->pos_map[i].y > game->gh->zomb_pos.y &&
-			jump_up == 0) {
-				game->status = 2;
-				game->map = 0;
-				game->gh->zomb_pos.y = 460;
-				sfMusic_stop(game->sd->zikmu);
+		if (gm->gh->pos_map[i].x < gm->gh->zomb_pos.x + 300 &&
+			gm->gh->pos_map[i].x + 98 > gm->gh->zomb_pos.x &&
+			gm->gh->pos_map[i].y < gm->gh->zomb_pos.y + 440 &&
+			98 + gm->gh->pos_map[i].y > gm->gh->zomb_pos.y &&
+			gm->st.jump_up == 0) {
+				gm->st.status = 2;
+				gm->st.map = 0;
+				gm->gh->zomb_pos.y = 460;
+				sfMusic_stop(gm->sd->zikmu);
 			}
 			++i;
 	}
@@ -46,33 +46,28 @@ int collision(game_s *game, int jump_up)
 
 int jump(game_s *game)
 {
-	static int	jump_up = 0;
-	static int	jump_dwn = 0;
-	static int	ground = 1100;
-	static int	status = 0;
-
 	if (sfKeyboard_isKeyPressed(sfKeySpace) == sfTrue) {
-		jump_up = 1;
+		game->st.jump_up = 1;
 		if (sfSound_getStatus(game->sd->zmb) != sfPlaying)
 		sfSound_play(game->sd->zmb);
 	}
-	status = status + collision(game, jump_up);
-	if (status == 5) {
-		status = 0;
-		ground = ground + (98 * 5);
+	game->st.jump = game->st.jump + collision(game);
+	if (game->st.jump == 5) {
+		game->st.jump = 0;
+		game->st.sol = game->st.sol + (98 * 5);
 		game->gh->zomb_pos.y = game->gh->zomb_pos.y + (98 * 5);
 	}
-	if (jump_up == 1 && jump_dwn < 8) {
+	if (game->st.jump_up == 1 && game->st.jump_dwn < 8) {
 		game->gh->zomb_pos.y = game->gh->zomb_pos.y - 25;
-		jump_dwn = jump_dwn + 1;
-	} else if (jump_up == 1 && jump_dwn < 16) {
+		game->st.jump_dwn = game->st.jump_dwn + 1;
+	} else if (game->st.jump_up == 1 && game->st.jump_dwn < 16) {
 		game->gh->zomb_pos.y = game->gh->zomb_pos.y + 25;
-		jump_dwn = jump_dwn + 1;
+		game->st.jump_dwn = game->st.jump_dwn + 1;
 	} else {
-		jump_up = 0;
-		jump_dwn = 0;
+		game->st.jump_up = 0;
+		game->st.jump_dwn = 0;
 	}
-	return (ground);
+	return (game->st.sol);
 }
 
 sfIntRect position_pixels(int a, int b, int c, int d)

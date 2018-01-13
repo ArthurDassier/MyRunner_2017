@@ -9,9 +9,9 @@
 
 void win_or_def(game_s *game)
 {
-	if (game->status == 2)
+	if (game->st.status == 2)
 		defeat_menu(game);
-	if (game->status == 3)
+	if (game->st.status == 3)
 		win_menu(game);
 }
 
@@ -19,8 +19,7 @@ void defeat_menu(game_s *game)
 {
 	sfRenderWindow_drawSprite(game->wd.window, game->mn->def, NULL);
 	if(sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue) {
-		game->status = 0;
-		game->check = 1;
+		reset(game);
 	}
 }
 
@@ -28,10 +27,21 @@ void win_menu(game_s *game)
 {
 	sfRenderWindow_drawSprite(game->wd.window, game->mn->vic, NULL);
 	if(sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue) {
-		game->status = 0;
-		game->check = 1;
-		game->score = 0;
-		game->map = 0;
+		reset(game);
 		sfMusic_stop(game->sd->zikmu);
 	}
+}
+
+void reset(game_s *game)
+{
+	game->st.status = 0;
+	game->st.check = 1;
+	game->st.score = 0;
+	game->st.map = 0;
+	game->gh->map_pos.y = 1100;
+	game->st.jump = 0;
+	game->st.sol = 1100;
+	game->gh->zomb_pos.y = 460;
+	game->st.jump_up = 0;
+	game->st.jump_dwn = 0;
 }

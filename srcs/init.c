@@ -19,11 +19,8 @@ void general_init(game_s *game)
 	sfSprite_setTexture(game->bg->back_spt, game->bg->back_txt, sfTrue);
 	init_tab(game);
 	sfRenderWindow_setMouseCursorVisible(game->wd.window, sfFalse);
-	game->gh->zomb_pos.y = 460;
-	game->status = 0;
-	game->check = 0;
-	game->score = 0;
-	game->map = 0;
+	reset(game);
+	game->st.check = 0;
 }
 
 void init_game(game_s *game)
@@ -53,5 +50,5 @@ void init_graphs(game_s *game)
 	txt_menus_creates(game);
 	spt_create(game);
 	init_sounds(game);
-	game->anm = 0;
+	game->st.anm = 0;
 }

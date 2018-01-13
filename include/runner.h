@@ -71,6 +71,19 @@ typedef struct sounds
 	sfSound		*epe;
 } sounds;
 
+typedef struct status_game
+{
+	int		score;
+	int		anm;
+	int		status;
+	int		map;
+	int		check;
+	int		jump;
+	int		sol;
+	int		jump_up;
+	int		jump_dwn;
+} status_game;
+
 typedef struct game_s
 {
 	wind		wd;
@@ -78,11 +91,7 @@ typedef struct game_s
 	graphs		*gh;
 	sounds		*sd;
 	menus		*mn;
-	int		score;
-	int		anm;
-	int		status;
-	int		map;
-	int		check;
+	status_game	st;
 } game_s;
 
 sfIntRect position_pixels(int a, int b, int c, int d);
@@ -112,6 +121,7 @@ void destroy_text(game_s *game);
 void destroy_sprt(game_s *game);
 void destroy_snds(game_s *game);
 void win_or_def(game_s *game);
+void reset(game_s *game);
 void help(void);
 
 #endif

@@ -9,9 +9,9 @@
 
 void display_code(game_s *gm, char *buffer)
 {
-	if (gm->status == 0)
+	if (gm->st.status == 0)
 		display_start(gm);
-	if (gm->status == 1) {
+	if (gm->st.status == 1) {
 		animation(gm);
 		display_map(gm, buffer);
 		sfRenderWindow_drawSprite(gm->wd.window, gm->gh->dead, NULL);
@@ -39,14 +39,14 @@ int key_enter(game_s *game)
 void return_enter(game_s *game, int status)
 {
 	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue &&
-		status == 0 && game->check == 0) {
+		status == 0 && game->st.check == 0) {
 		sfMusic_play(game->sd->zikmu);
 		sfMusic_setVolume(game->sd->zikmu, 25);
-		game->status = 1;
+		game->st.status = 1;
 	}
 	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && status == 1)
 		sfRenderWindow_close(game->wd.window);
-	game->check = 0;
+	game->st.check = 0;
 }
 
 void display_start(game_s *game)
