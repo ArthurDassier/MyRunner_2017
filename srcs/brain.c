@@ -9,15 +9,16 @@
 
 void help(void)
 {
-	my_printf("BETA (v:6.3 my_runner) IN DEVELOPEMENT\n");
+	my_printf("Keep running and you will earn points !\n");
+	my_printf("glhf\n");
 }
 
 void play(game_s game, char *argv)
 {
 	int	fd = open(argv, O_RDONLY);
-	char	*buffer = malloc(sizeof(int) * 400000);
+	char	*buffer = malloc(sizeof(char) * 40000);
 
-	read(fd, buffer, sizeof(int) * 400000);
+	read(fd, buffer, sizeof(char) * 40000);
 	general_init(&game);
 	while (sfRenderWindow_isOpen(game.wd.window)) {
 		display_code(&game, buffer);
@@ -26,6 +27,7 @@ void play(game_s game, char *argv)
 		sfSleep(game.wd.time_s);
 	}
 	destroyer(&game);
+	free(buffer);
 }
 
 int main(int argc, char *argv[])

@@ -29,6 +29,8 @@ typedef struct wind
 	sfVideoMode	video_mode;
 	sfRenderWindow	*window;
 	sfTime		time_s;
+	sfFont		*font;
+	sfText		*text;
 } wind;
 
 typedef struct background
@@ -122,6 +124,8 @@ void destroy_sprt(game_s *game);
 void destroy_snds(game_s *game);
 void win_or_def(game_s *game);
 void reset(game_s *game);
+char *my_return_str(int i, char *b);
+void my_score(game_s *game);
 void help(void);
 
 #endif

@@ -61,6 +61,7 @@ void read_map(game_s *game, char *buffer)
 	}
 	game->st.map = game->st.map + 8;
 	game->st.score = game->st.score + 10;
-	if (game->st.score >= 8100)
+	if (game->st.score >= SCORE_MAX)
 		game->st.status = 3;
+	my_score(game);
 }
