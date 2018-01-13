@@ -36,8 +36,10 @@ int main(int argc, char *argv[])
 	game.bg = malloc(sizeof(background));
 	game.sd = malloc(sizeof(sounds));
 	game.mn = malloc(sizeof(menus));
-	if (argc != 2)
+	if (argc != 2) {
+		my_puterror("You must give a map as argument\n");
 		return (84);
+	}
 	if (argc == 2 && argv[1][0] == '-' && argv[1][1] == 'h') {
 		help();
 		return (0);

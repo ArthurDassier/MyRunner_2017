@@ -7,6 +7,14 @@
 
 #include "my.h"
 
+void win_or_def(game_s *game)
+{
+	if (game->status == 2)
+		defeat_menu(game);
+	if (game->status == 3)
+		win_menu(game);
+}
+
 void defeat_menu(game_s *game)
 {
 	sfRenderWindow_drawSprite(game->wd.window, game->mn->def, NULL);

@@ -15,11 +15,8 @@ void display_code(game_s *gm, char *buffer)
 		animation(gm);
 		display_map(gm, buffer);
 		sfRenderWindow_drawSprite(gm->wd.window, gm->gh->dead, NULL);
-	}
-	if (gm->status == 2)
-		defeat_menu(gm);
-	if (gm->status == 3)
-		win_menu(gm);
+	} else
+		win_or_def(gm);
 }
 
 int key_enter(game_s *game)
@@ -41,7 +38,8 @@ int key_enter(game_s *game)
 
 void return_enter(game_s *game, int status)
 {
-	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue && status == 0 && game->check == 0) {
+	if (sfKeyboard_isKeyPressed(sfKeyReturn) == sfTrue &&
+		status == 0 && game->check == 0) {
 		sfMusic_play(game->sd->zikmu);
 		sfMusic_setVolume(game->sd->zikmu, 25);
 		game->status = 1;

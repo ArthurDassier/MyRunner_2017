@@ -111,6 +111,7 @@ void destroyer(game_s *game);
 void destroy_text(game_s *game);
 void destroy_sprt(game_s *game);
 void destroy_snds(game_s *game);
+void win_or_def(game_s *game);
 void help(void);
 
 #endif

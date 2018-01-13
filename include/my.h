@@ -35,5 +35,6 @@ int my_strncmp(char const *s1, char const *s2, int n);
 char *my_strcat(char *dest, char const *src);
 int my_put_nbr_base(int nb, char *base);
 long my_put_nbr_base_long(long long nb, char *base);
+void my_puterror(char *str);
 
 #endif
