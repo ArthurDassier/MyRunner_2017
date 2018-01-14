@@ -13,14 +13,8 @@ char *my_return_str(int i, char *str)
 	char		*tmp = str;
 	int		shifter = i;
 
-	++tmp;
-	++tmp;
-	++tmp;
-	++tmp;
-	++tmp;
-	++tmp;
-	++tmp;
-	++tmp;
+	for (int count = 0; count != 8; ++count)
+		++tmp;
 	while (shifter) {
 		++tmp;
 		shifter = shifter / 10;

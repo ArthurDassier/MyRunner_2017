@@ -34,9 +34,8 @@ int collision(game_s *gm)
 			gm->gh->pos_map[i].y < gm->gh->zomb_pos.y + 440 &&
 			98 + gm->gh->pos_map[i].y > gm->gh->zomb_pos.y &&
 			gm->st.jump_up == 0) {
+				reset(gm);
 				gm->st.status = 2;
-				gm->st.map = 0;
-				gm->gh->zomb_pos.y = 460;
 				sfMusic_stop(gm->sd->zikmu);
 			}
 			++i;
