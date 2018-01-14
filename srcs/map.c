@@ -41,6 +41,15 @@ void draw_background(game_s *gm)
 	sfSprite_setPosition(gm->bg->back_spm2, gm->bg->m2_pos);
 	sfSprite_setPosition(gm->bg->back_spm1, gm->bg->m1_pos);
 }
+
+void score_n_map(game_s *game)
+{
+	game->st.map = game->st.map + 8;
+	game->st.score = game->st.score + 10;
+	if (game->st.score >= SCORE_MAX)
+		game->st.status = 3;
+}
+
 void read_map(game_s *game, char *buffer)
 {
 	int	i = 0;
@@ -59,9 +68,6 @@ void read_map(game_s *game, char *buffer)
 			game->gh->map_pos.x = game->gh->map_pos.x + 98;
 		++i;
 	}
-	game->st.map = game->st.map + 8;
-	game->st.score = game->st.score + 10;
-	if (game->st.score >= SCORE_MAX)
-		game->st.status = 3;
+	score_n_map(game);
 	my_score(game);
 }

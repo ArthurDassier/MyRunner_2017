@@ -9,16 +9,25 @@
 
 void help(void)
 {
-	my_printf("Keep running and you will earn points !\n");
+	my_printf("Keep running and you will earn points as long as\n");
+	my_printf("you don't take a block in your face !\nSPACE for jump\n");
 	my_printf("glhf\n");
 }
 
 void play(game_s game, char *argv)
 {
 	int	fd = open(argv, O_RDONLY);
-	char	*buffer = malloc(sizeof(char) * 40000);
+	char	*buffer = malloc(sizeof(char) * 1024);
+	char	str[0];
+	int	check = 1;
+	int	i = 0;
 
-	read(fd, buffer, sizeof(char) * 40000);
+	while ((check = read(fd, str, 1) > 0)) {
+		buffer[i] = str[0];
+		buffer = my_realloc(buffer);
+		++i;
+	}
+	buffer[i] = '\0';
 	general_init(&game);
 	while (sfRenderWindow_isOpen(game.wd.window)) {
 		display_code(&game, buffer);
@@ -26,8 +35,7 @@ void play(game_s game, char *argv)
 		analyse_event(game);
 		sfSleep(game.wd.time_s);
 	}
-	destroyer(&game);
-	free(buffer);
+	destroyer(&game, buffer);
 }
 
 int main(int argc, char *argv[])

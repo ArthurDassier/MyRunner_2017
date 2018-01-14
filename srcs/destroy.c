@@ -7,7 +7,7 @@
 
 #include "my.h"
 
-void destroyer(game_s *game)
+void destroyer(game_s *game, char *buffer)
 {
 	destroy_sprt(game);
 	destroy_text(game);
@@ -17,6 +17,7 @@ void destroyer(game_s *game)
 	free(game->bg);
 	free(game->sd);
 	free(game->mn);
+	free(buffer);
 }
 
 void destroy_text(game_s *game)
