@@ -9,8 +9,11 @@
 
 void display_code(game_s *gm, char *buffer)
 {
-	if (gm->st.score == -10)
+	if (gm->st.score == -10) {
 		gm->st.status = 1;
+		sfMusic_play(gm->sd->zikmu);
+		sfMusic_setVolume(gm->sd->zikmu, 25);
+	}
 	if (gm->st.status == 0)
 		display_start(gm);
 	if (gm->st.status == 1) {

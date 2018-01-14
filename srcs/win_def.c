@@ -9,7 +9,7 @@
 
 void win_or_def(game_s *game)
 {
-	else if (game->st.status == 2)
+	if (game->st.status == 2)
 		defeat_menu(game);
 	if (game->st.status == 3)
 		win_menu(game);
