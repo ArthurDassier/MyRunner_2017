@@ -21,6 +21,11 @@ int collision(game_s *gm)
 	int	i = 0;
 
 	while (gm->gh->pos_map[i].x) {
+		if (gm->st.score == -10) {
+			reset(gm);
+			sfMusic_stop(gm->sd->zikmu);
+			break;
+		}
 		if (gm->gh->pos_map[i].x < gm->gh->zomb_pos.x + 300 &&
 			gm->gh->pos_map[i].x + 98 > gm->gh->zomb_pos.x &&
 			gm->gh->pos_map[i].y < gm->gh->zomb_pos.y + 440 &&
